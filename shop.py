@@ -21,7 +21,7 @@ def print_menu():
     Print the items in the menu dictionary.
     """
     print("Our menu:")
-    for item in cupcake_menu:
+    for item in menu:
         print("- \"%s\" (KD %s)" % (item, menu[item]))
 
 
@@ -33,7 +33,7 @@ def print_originals():
     """
     print("Our original flavor cupcakes (KD %s each):" % original_price)
     for item in original_flavors:
-    print("- \"%s\"" % item)
+        print("- \"%s\"" % item)
 
 
 def print_signatures():
@@ -64,12 +64,18 @@ def get_order():
     Repeatedly ask customer for order until they end their order by typing "Exit".
     """
     order_list = []
-    order = input("What's your order? (Enter the exact spelling of the item you want. Type 'Exit' to end your order.)\n")
-    while order.lowercase() != "exit":
-        if is_valid_order(order):
-            order_list.append(order)
-        order = input()
+    order = input("What's your order? (Enter the exact spelling of the item you want. Type 'exit' to end your order.)\n")
+    order_list.append(order)
+    while order != "exit":
+        order = input("what else?\n")
 
+        if is_valid_order(order):
+            print("your order has bee accepted\n")
+            order_list.append(order)
+        else:
+            print("your order is invalid\n")
+
+    print(order_list)
     return order_list
 
 
